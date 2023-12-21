@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/82fa38c892.js" crossorigin="anonymous"></script>
+    <link href="./css/index-styles.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800&family=Quicksand:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/balloonfix-logo.jpg"/>
+    <title>Product Page | Balloonfix</title>
+  </head>
+  <body>
+    <div class="login-feedback-snackbar login-feedback-popup invisible"></div>
+    <div class="product-page-title">
+      <div class="product-page-title__number">01.</div>
+
+      <div class="product-page-title__text-and-user-navigation-wrapper">
+      <% if (user) { %>
+        <div class="product-page-title__user-navigation user-navigation visible">
+          <div class="user-navigation__image-wrapper">
+            <img class="user-navigation__image" src="<%= registeredUserData["user-image"] %>"  alt="user-image" referrerpolicy="no-referrer">
+          </div>
+          <div class="user-navigation__user-email">
+            <%= registeredUserData.email %>
+          </div>
+          <i class="fa-solid fa-caret-down user-navigation__down-arrow-icon"></i>
+          <div class="user-navigation__navigation-drop-down-wrapper invisible">
+            <a href="./" class="user-navigation__navigational-link">Home</a>
+            <a href="./my-orders-page" class="user-navigation__navigational-link">My Orders</a>
+          </div> 
+        </div>
+        <% } else { %>
+          <div class="product-page-title__user-navigation user-navigation invisible" style="visibility: hidden;">
+            <div class="user-navigation__image-wrapper">
+              <img class="user-navigation__image" src=""  alt="user-image">
+            </div>
+            <div class="user-navigation__user-email"></div>
+            <i class="fa-solid fa-caret-down user-navigation__down-arrow-icon"></i>
+            <div class="user-navigation__navigation-drop-down-wrapper invisible">
+              <a href="./" class="user-navigation__navigational-link">Home</a>
+              <a href="./my-orders-page" class="user-navigation__navigational-link">My Orders</a>
+            </div> 
+          </div>
+        <% } %>
+        <div class="product-page-title__text">Product Page</div>
+      </div>
+    </div>
+    </div>
+    <div class="product-details-container">
+      <div class="product-details-container__selected-product-image-container">
+          <img class="selected-product-image" src="<%= selectedProductDetails.primaryImage %>"  alt="selected-product-image"/>
+          <div class="product-details-container__selected-product-image-row selected-product-image-row">
+            <% selectedProductDetails.additionalImages.forEach((imageURL, index) => { %>
+              <img class="selected-product-image-row__row-image row-image-<%= index+1 %>" src="<%= imageURL %>"  alt="row-image"/>
+            <% }) %>
+          </div>
+      </div>
+      <div class="product-details-container__about-product-container about-product-container">
+        <div class="about-product-container-title">
+          <%= selectedProductDetails["product-name"] %>
+        </div>
+        <div class="about-product-container-product-description">
+          <%= selectedProductDetails["product-description"] %>
+        </div>
+        <div class="about-product-container-product-price">    
+          <% if (selectedProductDetails["product-discount"]) { %>
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <span class="product-discounted-price">
+              <%= Number(selectedProductDetails["product-price"]) - Number(selectedProductDetails["product-price"]) * Number(selectedProductDetails["product-discount"]) / 100 %>
+            </span>
+            <span class="product-price" style="font-size: 16px;">
+              <strike><%= selectedProductDetails["product-price"] %></strike>
+            </span>&nbsp;&nbsp;&nbsp;
+            <span class="product-discount-percentage">
+              <%= selectedProductDetails["product-discount"] %>% off
+            </span>
+          <% } else { %>
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <span class="product-price">
+              <%= selectedProductDetails["product-price"] %>
+            </span>
+            <span class="product-discounted-price"></span>
+            <span class="product-discount-percentage" style="display: none;">0% off</span>
+          <% } %>
+        </div>
+        <% if (selectedProductDetails["product-availability"] === "unavailable") { %>
+        <div class="about-product-container__product-availability-status">
+          Currently unavailable.
+        </div>
+        <% } else { %> 
+        <div class="about-product-container-buttons">
+          <div class="about-product-container__button event-type-button">
+            Event Type
+            <i class="fa-solid fa-angle-down angle-down-icon rotated"></i>
+            <div class="event-type-button__drop-down-list invisible">
+              <span class="drop-down-list__anniversary event-type-button__drop-down-list-option">Anniversary</span>
+              <span class="drop-down-list__birthday event-type-button__drop-down-list-option">Birthday</span>
+              <span class="drop-down-list__baby-shower event-type-button__drop-down-list-option">Baby-shower</span>
+              <span class="drop-down-list__baby-other event-type-button__drop-down-list-option">Other</span>
+            </div>
+            <div class="event-type-button__error-message invisible">
+              Select a type.
+            </div>
+          </div>
+          <div class="about-product-container__button book-now-button">
+            Book Now
+            <i class="fa-solid fa-hand-point-up"></i>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="sign-up-popup-wrapper invisible">
+      <div class="sign-up-popup-wrapper__sign-up-popup sign-up-popup">
+        <div class="sign-up-popup__close-button-wrapper">
+          <i class="fa-solid fa-circle-xmark sign-up-popup__close-button"></i>
+        </div>
+        <div class="sign-up-popup__text">
+          <span class="sign-up-popup__bolder-text">
+            Sign-Up
+          </span>
+          to continue with your booking.
+        </div>
+        <div class="sign-up-popup__button-wrapper button-wrapper">
+          <div class="button-wrapper__login-button">
+            <i class="fa-brands fa-google button-wrapper__login-button-icon"></i>
+            <div class="button-wrapper__login-button-text">
+                Login with google
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="book-now-popup-wrapper invisible">
+    <div class="book-now-popup visible">
+      <div class="book-now-popup__time-and-phone-number-container">
+        <div class="book-now-popup__time-wrapper">
+          <div class="book-now-popup__time-label">
+            Select Time
+          </div>
+          <div class="book-now-popup__time-field time-field">
+            <span class="time-field__time-value">
+              <span class="time-field__hour">00</span>:<span class="time-field__min">00</span>
+            </span>
+            <span class="time-field__time-period">AM</span>
+          </div>
+          <div class="book-now-popup__time-picker product-page-time-picker time-picker invisible">
+            <div class="time-picker-label">
+              Scroll to select time
+            </div>
+            <div class="time-picker__time-input-field-wrapper">
+              <div class="time-picker__hour-column">
+                <div class="time-picker__hour-column-number">00</div>
+                <div class="time-picker__hour-column-number">01</div>
+                <div class="time-picker__hour-column-number">02</div>
+                <div class="time-picker__hour-column-number">03</div>
+                <div class="time-picker__hour-column-number">04</div>
+                <div class="time-picker__hour-column-number">05</div>
+                <div class="time-picker__hour-column-number">06</div>
+                <div class="time-picker__hour-column-number">07</div>
+                <div class="time-picker__hour-column-number">08</div>
+                <div class="time-picker__hour-column-number">09</div>
+                <div class="time-picker__hour-column-number">10</div>
+                <div class="time-picker__hour-column-number">11</div>
+                <div class="time-picker__hour-column-number number-twelve">12</div>
+              </div>
+              <div class="time-picker__time-input-field-separator">:</div>
+              <div class="time-picker__minute-column">
+                <div class="time-picker__minute-column-number">00</div>
+                <div class="time-picker__minute-column-number">01</div>
+                <div class="time-picker__minute-column-number">02</div>
+                <div class="time-picker__minute-column-number">03</div>
+                <div class="time-picker__minute-column-number">04</div>
+                <div class="time-picker__minute-column-number">05</div>
+                <div class="time-picker__minute-column-number">06</div>
+                <div class="time-picker__minute-column-number">07</div>
+                <div class="time-picker__minute-column-number">08</div>
+                <div class="time-picker__minute-column-number">09</div>
+                <div class="time-picker__minute-column-number">10</div>
+                <div class="time-picker__minute-column-number">11</div>
+                <div class="time-picker__minute-column-number">12</div>
+                <div class="time-picker__minute-column-number">13</div>
+                <div class="time-picker__minute-column-number">14</div>
+                <div class="time-picker__minute-column-number">15</div>
+                <div class="time-picker__minute-column-number">16</div>
+                <div class="time-picker__minute-column-number">17</div>
+                <div class="time-picker__minute-column-number">18</div>
+                <div class="time-picker__minute-column-number">19</div>
+                <div class="time-picker__minute-column-number">20</div>
+                <div class="time-picker__minute-column-number">21</div>
+                <div class="time-picker__minute-column-number">22</div>
+                <div class="time-picker__minute-column-number">23</div>
+                <div class="time-picker__minute-column-number">24</div>
+                <div class="time-picker__minute-column-number">25</div>
+                <div class="time-picker__minute-column-number">26</div>
+                <div class="time-picker__minute-column-number">27</div>
+                <div class="time-picker__minute-column-number">28</div>
+                <div class="time-picker__minute-column-number">29</div>
+                <div class="time-picker__minute-column-number">30</div>
+                <div class="time-picker__minute-column-number">31</div>
+                <div class="time-picker__minute-column-number">32</div>
+                <div class="time-picker__minute-column-number">33</div>
+                <div class="time-picker__minute-column-number">34</div>
+                <div class="time-picker__minute-column-number">35</div>
+                <div class="time-picker__minute-column-number">36</div>
+                <div class="time-picker__minute-column-number">37</div>
+                <div class="time-picker__minute-column-number">38</div>
+                <div class="time-picker__minute-column-number">39</div>
+                <div class="time-picker__minute-column-number">40</div>
+                <div class="time-picker__minute-column-number">41</div>
+                <div class="time-picker__minute-column-number">42</div>
+                <div class="time-picker__minute-column-number">43</div>
+                <div class="time-picker__minute-column-number">44</div>
+                <div class="time-picker__minute-column-number">45</div>
+                <div class="time-picker__minute-column-number">46</div>
+                <div class="time-picker__minute-column-number">47</div>
+                <div class="time-picker__minute-column-number">48</div>
+                <div class="time-picker__minute-column-number">49</div>
+                <div class="time-picker__minute-column-number">50</div>
+                <div class="time-picker__minute-column-number">51</div>
+                <div class="time-picker__minute-column-number">52</div>
+                <div class="time-picker__minute-column-number">53</div>
+                <div class="time-picker__minute-column-number">54</div>
+                <div class="time-picker__minute-column-number">55</div>
+                <div class="time-picker__minute-column-number">56</div>
+                <div class="time-picker__minute-column-number">57</div>
+                <div class="time-picker__minute-column-number">58</div>
+                <div class="time-picker__minute-column-number">59</div>
+              </div>
+            </div>  
+            <div class="time-picker__time-period-wrapper">
+              <span class="time-picker__time-period-am selected">AM</span>
+              <span class="time-picker__time-period-pm unselected">PM</span>
+            </div>
+            <div class="time-picker__buttons-wrapper">
+              <div class="time-picker__button time-picker__cancel-button">
+                CANCEL
+              </div>
+              <div class="time-picker__button time-picker__ok-button">
+                OK
+              </div>
+            </div>
+            <div class="time-picker__validation-message invisible">
+              Enter a valid time!
+            </div>
+          </div>
+        </div>
+        <div class="book-now-popup__event-date-wrapper">
+          <div class="book-now-popup__event-date-label">
+            Event date
+          </div>
+          <div class="book-now-popup__event-date-field-wrapper">
+            <input type="date" class="book-now-popup__event-date-input-field" name="event-date" autocomplete="off"/>
+          </div>
+        </div>
+        <div class="book-now-popup__phone-number-wrapper">
+          <div class="book-now-popup__phone-number-label">
+            Mobile Number
+          </div>
+          <div class="book-now-popup__phone-number-field-wrapper">
+            <input type="tel" class="book-now-popup__phone-number-input-field" name="phone-number" autocomplete="off"/>
+          </div>
+        </div>
+        <div class="book-now-popup__user-address-wrapper">
+          <div class="book-now-popup__user-address-label">
+            Address
+          </div>
+          <div class="book-now-popup__user-address-field-wrapper">
+            <input type="text" class="book-now-popup__user-address-input-field" name="user-address" autocomplete="off"/>
+          </div>
+        </div>
+        <div class="book-now-popup__additional-info-wrapper">
+          <div class="book-now-popup__additional-info-label">
+            Additional Info
+          </div>
+          <div class="book-now-popup__additional-info-field-wrapper">
+            <textarea type="text" class="book-now-popup__additional-info-input-field invisible" name="additional-info" rows="5" cols="25"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="book-now-popup__button custom unselected">
+        Custom 
+        <i class="fa-solid fa-gear"></i>
+      </div>
+      <div class="book-now-popup__button book-now">
+        Book Now
+      </div>
+      <div class="book-now-popup__validation-error-message">
+        <i class="fa-solid fa-circle-exclamation"></i>
+          Insufficient Details
+      </div>
+      <div class="book-now-popup__close-button-wrapper">
+        <i class="fa-solid fa-circle-xmark book-now-popup__close-button"></i>
+      </div>
+    </div>
+    </div>
+    <div class="booking-successful-popup-wrapper invisible">
+      <div class="booking-successful-popup">
+        <div class="booking-successful-popup__text-section">
+          <span class="booking-successful-popup__bolder-text">
+            Congratulations!!!
+          </span>
+          <br>
+          your booking is successful
+          <i class="fa-solid fa-champagne-glasses"></i>
+        </div>
+        <div class="booking-successful-popup__button-section">
+          <div class="booking-successful-popup__button">
+            View Invoice
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+        <div class="booking-successful-popup__close-button-wrapper">
+          <i class="fa-solid fa-circle-xmark booking-successful-popup__close-button"></i>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer__large-text">
+        BALLOONFIX
+      </div>
+      <div class="footer__get-in-touch-wrapper get-in-touch-wrapper">
+        <div class="get-in-touch-wrapper__title">
+          Connect with Us...
+        </div>
+        <div class="get-in-touch-wrapper__email-phone-info-wrapper email-phone-info-wrapper">
+          <div class="email-phone-info-wrapper__mobile-info">
+            <i class="email-phone-info-wrapper__mobile-icon fa-solid fa-phone"></i>
+            <div class="email-phone-info-wrapper__mobile-number">
+              1234567890
+            </div>
+          </div>
+          <div class="email-phone-info-wrapper__email-info">
+             <i class="email-phone-info-wrapper__email-icon fa-solid fa-envelope"></i>
+             <div class="email-phone-info-wrapper__email-id">
+              balloonfixin@gmail.com
+             </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__terms-and-conditions-wrapper">
+        <a class="footer__terms-and-conditions-link "href="./about-page#terms-and-conditions">
+          Terms & Conditions.
+        </a>
+      </div>
+      <div class="footer__copyright-text">
+        <i class="fa-regular fa-copyright"></i>
+        Copyright 2023 Balloonfix. All rights reserved.
+      </div>
+    </footer>
+    <script type="module" src="./javascript/product-page.js"></script>
+    <script type="module" src="./javascript/time-picker.js"></script>
+    <script src="./javascript/utils.js"></script>
+    <script type="module" src="./javascript/firebase_google-signIn.js"></script>
+  </body>
+</html>

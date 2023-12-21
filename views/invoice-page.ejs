@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/82fa38c892.js" crossorigin="anonymous"></script>
+    <link href="./css/index-styles.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800&family=Quicksand:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/balloonfix-logo.jpg"/>
+    <title>Invoice Page | Balloonfix</title>
+  </head>
+  <body>
+    <div class="invoice-page-title">
+      <div class="invoice-page-title__number">03.</div>
+      <div class="invoice-page-title__text-and-user-navigation-wrapper">
+        <div class="invoice-page-title__user-navigation user-navigation">
+          <div class="user-navigation__image-wrapper">
+            <img class="user-navigation__image" src="<%= userData["user-image"] %>"  alt="user-image" referrerpolicy="no-referrer">
+          </div>
+          <div class="user-navigation__user-email">
+            <%= userData.email %>
+          </div>
+          <i class="fa-solid fa-caret-down user-navigation__down-arrow-icon"></i>
+          <div class="user-navigation__navigation-drop-down-wrapper invisible">
+            <a href="./" class="user-navigation__navigational-link">Home</a>
+            <a href="./my-orders-page" class="user-navigation__navigational-link">My Orders</a>
+          </div> 
+        </div>
+        <div class="product-page-title__text">Invoice Page</div>
+      </div>
+    </div>
+    <div class="order-details-container__product-invoice-container product-invoice-container">
+      <div class="product-invoice-container__title">
+        Invoice
+      </div>
+       <div class="product-invoice-container___invoice-date-product-status-row invoice-date-type-status-row">
+         <div class="invoice-date-type-status-row__labels-wrapper">
+           <div class="invoice-label invoice-date-timing-label">
+             Date & Timing
+            </div>
+            <div class="invoice-label invoice-event-type-label">
+              Event Type
+            </div>
+            <div class="invoice-label invoice-status-label">
+              Status
+            </div>
+         </div>
+         <div class="invoice-date-type-status-row__labels-value-wrapper">
+           <div class="invoice-label-value invoice-date-timing-label-value">
+             <%= userData["event-date"] %> at 
+             <%= userData.time %>
+           </div>
+           <div class="invoice-label-value invoice-event-type-label-value">
+             <%= userData.eventType %>
+           </div>
+           <% if (userData.orderStatus === "Confirmed") { %>
+            <div class="invoice-label-value invoice-status-label-value" style="color: #118739;">
+              <%= userData.orderStatus %>
+            </div>
+           <% } else { %> 
+            <div class="invoice-label-value invoice-status-label-value">
+              <%= userData.orderStatus %>
+            </div>
+           <% } %>
+         </div>
+       </div>
+       <div class="product-invoice-container__product-price-discount-row invoice-product-price-discount-row">
+         <div class="invoice-product-price-discount-row__labels-wrapper">
+           <div class="invoice-label invoice-product-name-label">
+             Product Name
+           </div>
+           <div class="invoice-label invoice-price-label">
+             Price
+           </div>
+           <div class="invoice-label invoice-discount-label">
+             Discount
+           </div>
+         </div>
+         <div class="invoice-product-price-discount-row__labels-value-wrapper">
+           <div class="invoice-label-value invoice-product-name-label-value">
+             <%= userData.productName %>
+           </div>
+           <div class="invoice-label-value invoice-price-label-value">
+            <i class="fa-solid fa-indian-rupee-sign invoice-rupee-icon"></i>
+             <span class="price">
+               <%= userData.productPrice %>
+             </span>
+           </div>
+           <div class="invoice-label-value invoice-discount-label-value">
+             <span class="discount">
+               <%= userData.productDiscount %>
+             </span>
+            <i class="fa-solid fa-percent invoice-percent-icon"></i>
+           </div>
+         </div>
+       </div>
+       <div class="product-invoice-container__total-amount-row">
+         <div class="invoice-label invoice-total-label">
+           Total
+         </div>
+         <div class="invoice-label-value invoice-total-label-value">
+           <i class="fa-solid fa-indian-rupee-sign invoice-rupee-icon"></i>
+          <% if (userData.discountedPrice) { %>
+           <span class="total-price">
+             <%= userData.discountedPrice %>
+           </span>
+          <% } else { %>
+           <span class="total-price">
+             <%= userData.productPrice %>
+           </span>
+          <% } %>
+         </div>
+       </div>
+       <div class="product-invoice-container__transportation-charge-note">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        Note - Transportation charges for decoration equipment is to be paid separately.
+       </div>
+    </div>
+    <footer class="footer">
+      <div class="footer__large-text">
+        BALLOONFIX
+      </div>
+      <div class="footer__get-in-touch-wrapper get-in-touch-wrapper">
+        <div class="get-in-touch-wrapper__title">
+          Connect with Us...
+        </div>
+        <div class="get-in-touch-wrapper__email-phone-info-wrapper email-phone-info-wrapper">
+          <div class="email-phone-info-wrapper__mobile-info">
+            <i class="email-phone-info-wrapper__mobile-icon fa-solid fa-phone"></i>
+            <div class="email-phone-info-wrapper__mobile-number">
+              1234567890
+            </div>
+          </div>
+          <div class="email-phone-info-wrapper__email-info">
+             <i class="email-phone-info-wrapper__email-icon fa-solid fa-envelope"></i>
+             <div class="email-phone-info-wrapper__email-id">
+              balloonfixin@gmail.com
+             </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__terms-and-conditions-wrapper">
+        <a class="footer__terms-and-conditions-link "href="./about-page#terms-and-conditions">
+          Terms & Conditions.
+        </a>
+      </div>
+      <div class="footer__copyright-text">
+        <i class="fa-regular fa-copyright"></i>
+        Copyright 2023 Balloonfix. All rights reserved.
+      </div>
+    </footer>
+    <script src="./javascript/utils.js"></script>
+    <script src="./javascript/invoice-page.js"></script>
+  </body>

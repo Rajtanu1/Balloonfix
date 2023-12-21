@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://kit.fontawesome.com/82fa38c892.js" crossorigin="anonymous"></script>
+    <link href="./css/index-styles.css" rel="stylesheet"/>
+    <link href="./css/admin-page-time-picker.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/balloonfix-logo.jpg"/>
+    <title>Edit Orders(Admin) | Balloonfix</title>
+  </head>
+  <body>
+    <div class="admin-page-title">
+      <div class="admin-page-title__number">00.</div>
+      <div class="admin-page-title__text">Admin Page</div>
+    </div>
+    <div class="admin-panel">
+     <div class="admin-panel__edit-orders-wrapper edit-orders-wrapper">
+        <div class="edit-orders-wrapper__order-state-toggle-wrapper">
+          <div class="edit-orders-wrapper__order-state-pending">
+            Pending
+          </div>
+          <div class="edit-orders-wrapper__order-state-confirmed selected">
+            Confirmed
+          </div>
+        </div>
+        <div class="edit-orders-wrapper__editable-order-list-wrapper editable-order-list-wrapper">
+        </div>
+      </div>
+      <div class="button get-order-details-button">
+        Get Order Details   
+        <i class="fa-solid fa-circle-info"></i>   
+      </div>
+      <div class="admin-panel__product-upload product-upload">
+        <div class="product-upload__title">
+          Product
+        </div>
+        <div class="product-upload__product-details">
+          <div class="product-upload__product-name-wrapper">
+            <div class="product-upload__product-name-label">
+              Product name
+            </div>
+            <input type="text" class="product-upload__product-name-value" name="product-name">
+          </div>
+          <div class="product-upload__product-description-wrapper">
+            <div class="product-upload__product-description-label">
+              Product description
+            </div>
+            <input type="text" class="product-upload__product-description-value" name="product-description">
+          </div>
+          <div class="product-upload__product-price-wrapper">
+            <div class="product-upload__product-price-label">
+              Product price
+            </div>
+            <input type="number" class="product-upload__product-price-value" name="product-price">
+          </div>
+          <div class="product-upload__product-discount">
+            <div class="product-upload__product-discount-label">
+              Product discount
+            </div>
+            <input type="number" class="product-upload__product-discount-value" name="product-discount" placeholder="%">
+          </div>
+          <div class="product-upload__primary-image-wrapper">
+            <div class="product-upload__primary-image-label">
+              Primary image
+            </div>
+            <input type="file" class="product-upload__choose-image-button" name="primary-image-button">
+            <div class="product-upload__image-preview-wrapper">
+              <img class="product-upload__primary-image-preview image-preview invisible">
+            </div>
+          </div>
+          <div class="product-upload__additional-image-wrapper">
+            <div class="product-upload__additional-image-label">
+              Additional image
+            </div>
+            <input type="file" class="product-upload__choose-additional-image-button" name="additional-image-button" multiple>
+            <div class="product-upload__additional-image-preview-wrapper">
+              <div class="product-upload__image-preview-wrapper">
+              <img class="product-upload__additional-image-preview image-preview invisible">
+              </div>
+              <div class="product-upload__image-preview-wrapper">
+                <img class="product-upload__additional-image-preview image-preview invisible">
+              </div>
+              <div class="product-upload__image-preview-wrapper">
+                <img class="product-upload__additional-image-preview image-preview invisible">
+              </div>
+            </div>
+            </div>
+        </div>
+        <div class="product-upload__upload-button button">
+          Upload
+        </div>
+        <div class="notification__insufficient-product-details invisible">
+          Insufficient product details!
+        </div>
+      </div>
+      <div class="admin-panel__delete-product delete-product">
+        <div class="delete-product__title">
+          Delete Product
+        </div>
+        <div class="delete-product__products-wrapper"></div>
+        <div class="delete-product__button button">
+          Get Products
+        </div>
+      </div>
+      <div class="admin-panel__product-availability product-availability">
+        <div class="product-availability__title">
+          Product Availability
+        </div>
+        <div class="product-availability__products-wrapper"></div>
+        <div class="product-availability__button button">Get Products</div>
+      </div>
+      <div class="admin-panel__banner-upload banner-upload">
+        <div class="banner-upload__title">
+          Banner
+        </div>
+        <div class="banner-upload__banner-image-wrapper">
+          <div class="banner-upload__banner-image-label">
+            Banner image
+          </div>
+          <input type="file" class="banner-upload__choose-image-button" name="choose-button">
+          <div class="banner-upload__image-preview-wrapper">
+            <img class="banner-upload__banner-image-preview image-preview">  
+          </div>
+        </div>
+        <div class="banner-upload__upload-button button">
+          Upload
+        </div>
+      </div>
+      <div class="delete-banner">
+        <div class="delete-banner__title">
+          Delete banner
+        </div>
+        <div class="delete-banner__enter-banner-number-wrapper">
+          <div class="delete-banner__enter-banner-number-label">
+            Enter a banner number
+          </div>
+          <div class="delete-banner__enter-banner-number-input-wrapper">
+            <input type="text" maxlength="1" class="delete-banner__enter-banner-number-input-field">
+          </div>
+          <div class="delete-banner__total-banner-image-number">
+          </div>
+        </div>
+        <div class="delete-banner__button button">
+          Delete banner
+        </div>
+        <div class="delete-banner__update-notification">
+          Nothing yet.
+        </div>
+      </div>
+      <div class="upload-notification invisible">
+         <div class="upload-notification__successful">
+           Successfully uploaded.
+           <i class="fa-solid fa-circle-check"></i>
+         </div>
+         <div class="upload-notification__failed">
+           Upload failed.
+           <i class="fa-solid fa-circle-xmark"></i>
+         </div>
+      </div>
+      <div class="upload-spinner-wrapper visible">
+        <div class="upload-spinner"></div>
+      </div>
+    </div>
+    <div class="admin-login-popup-wrapper visible">
+      <div class="admin-login-popup">
+		    <div class="admin-login-popup__header">
+		  		<div class="admin-login-popup__header-title">
+            Log In
+		  		</div>
+		  		<div class="admin-login-popup__header-image-wrapper">
+		  			<img class="admin-login-popup__header-image" src="./images/balloonfix-logo.jpg" alt="craftoevent logo"/>
+		  		</div>
+		  	</div>
+		  	<div class="admin-login-popup__admin-login-button-wrapper admin-login-button-wrapper">
+          <button class="admin-login-button-wrapper__google-login-button google-login-button">
+            <i class="fa-brands fa-google google-login-button__icon"></i>
+            <span class="google-login-button__text">
+              Log in with Google
+            </span>
+          </button>
+        </div> 
+        <div class="admin-login-popup__footer">
+            Log yourself in as an admin&nbsp;
+            <i class="fa-solid fa-key toggle-button__admin-icon"></i>
+        </div> 
+        <div class="admin-login-popup__access-unauthorized-notification invisible">
+          Access Unauthorized&nbsp;
+          <i class="fa-solid fa-circle-exclamation"></i>
+        </div>    
+	    </div>
+  </div>
+  <div class="admin-page__homepage-link-wrapper">
+    <a class="admin-page__homepage-link" href="./">
+      <i class="fa-solid fa-house"></i>
+    </a>
+  </div>
+  </body>
+  <script src="./javascript/utils.js"></script>
+  <script type="text/babel" data-type="module" src="../javascript/edit-orders-admin-page.js"></script>
+</html>

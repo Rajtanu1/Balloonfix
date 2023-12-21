@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/82fa38c892.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0" />
+    <link href="./css/index-styles.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800&family=Quicksand:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/balloonfix-logo.jpg"/>
+    <title>Homepage | Balloonfix</title>
+  </head>
+  <body>
+    <div class="header-large-font">
+      BALLOONFIX
+    </div>
+    <div class="fullscreen-logo-wrapper">
+      <img class="fullscreen-logo-wrapper__logo-image" src="./images/balloonfix-logo.jpg" alt="balloonfix-logo">
+      <div class="fullscreen-logo-wrapper__preload-spinner">
+        <div class="preload-spinner"></div>
+      </div>
+    </div>
+    <nav class="navbar">
+      <div class="navbar__nested-border-container">
+        <div class="navbar__bars-icon-wrapper bars-icon-wrapper">
+            <i class="fa-solid fa-bars bars-icon-wrapper__bars-icon"></i>
+        </div>
+        <div class="navbar__button-userID-container button-userID-container">
+          <% if (registeredUserData !== null) { %>
+          <div class="button-userID-container__button-wrapper button-wrapper invisible" style="display: none;">
+          <% } else { %>
+          <div class="button-userID-container__button-wrapper button-wrapper visible" style="display: block;">
+          <% } %>
+            <div class="button-wrapper__login-button">
+                <i class="fa-brands fa-google button-wrapper__login-button-icon"></i>
+                <div class="button-wrapper__login-button-text">
+                    Login with google
+                </div>
+            </div>
+            <div class="button-wrapper__loading-button loading-button invisible">
+              <div class="loading-button__spinner"></div>
+            </div>
+          </div>
+          <% if (registeredUserData !== null) { %>
+          <div class="button-userID-container__user user visible" style="display: flex;">
+              <div class="user__name"><%= registeredUserData.username %></div>
+              <div class="user__image-wrapper">
+                <img class="user__image" src="<%= registeredUserData["user-image"] %>" alt="user image" referrerpolicy="no-referrer"/>
+              </div>
+          </div>
+          <% } else { %>
+          <div class="button-userID-container__user user invisible">
+            <div class="user__name"></div>
+            <div class="user__image-wrapper">
+              <img class="user__image" alt="user image" referrerpolicy="no-referrer"/>
+            </div>
+          </div>
+          <% } %> 
+        </div>
+        <div class="navbar__links-wrapper links-wrapper invisible">
+            <div class="links-wrapper__xmark-icon-wrapper xmark-icon-wrapper">
+              <i class="fa-solid fa-xmark xmark-icon-wrapper__xmark-icon invisible"></i>
+            </div>
+            <ul class="links-wrapper__links-list">
+              <li>
+                <a href="./" class="links-wrapper__link">HOME</a>
+              </li>
+              <li>
+                <a href="./my-orders-page" class="links-wrapper__link">MY ORDERS</a>
+              </li>
+              <li>
+                <a href="./about-page" class="links-wrapper__link">ABOUT</a>
+              </li>
+              <li style="display: none;">
+                <a href="./edit-orders-admin-page" class="links-wrapper__link">
+                  ADMIN
+                  <i class="fa-solid fa-key"></i>
+                </a>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="banner">
+      <div class="banner__scroll-image-wrapper scroll-image-wrapper">
+      <% if (productAndBannerImages) { %>
+        <% productAndBannerImages.bannerImages.forEach(imageURL => { %>
+          <img class="scroll-image-wrapper__image" src="<%= imageURL %>" alt="banner-image"/>
+        <% }); %>
+      <% } %>
+      </div>
+      <div class="scroll-image-wrapper__indicator-wrapper">
+        <% if (productAndBannerImages) { %>
+          <% productAndBannerImages.bannerImages.forEach(image => { %>
+            <span class="scroll-image-wrapper__indicator"></span>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+    <div class="product-cards-wrapper">
+      <% if (productAndBannerImages.arrayOfProductImages.length !== 0) { %>
+        <% productAndBannerImages.arrayOfProductImages.forEach(imageURL => { %>
+          <div class="product-cards-wrapper__product-card product-card">
+            <div class="product-card__image-wrapper">
+              <img class="product-card-image" src="<%= imageURL %>" alt="product-image">
+            </div>
+            <div class="product-card__button">
+              View Product
+            </div>
+          </div> 
+      <% }); %>
+      <% } %>
+    </div>
+    <footer class="footer">
+      <div class="footer__large-text">
+        BALLOONFIX
+      </div>
+      <div class="footer__get-in-touch-wrapper get-in-touch-wrapper">
+        <div class="get-in-touch-wrapper__title">
+          Connect with Us...
+        </div>
+        <div class="get-in-touch-wrapper__email-phone-info-wrapper email-phone-info-wrapper">
+          <div class="email-phone-info-wrapper__mobile-info">
+            <i class="email-phone-info-wrapper__mobile-icon fa-solid fa-phone"></i>
+            <div class="email-phone-info-wrapper__mobile-number">
+              1234567890
+            </div>
+          </div>
+          <div class="email-phone-info-wrapper__email-info">
+             <i class="email-phone-info-wrapper__email-icon fa-solid fa-envelope"></i>
+             <div class="email-phone-info-wrapper__email-id">
+              balloonfixin@gmail.com
+             </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__terms-and-conditions-wrapper">
+        <a class="footer__terms-and-conditions-link "href="./about-page#terms-and-conditions">
+          Terms & Conditions.
+        </a>
+      </div>
+      <div class="footer__copyright-text">
+        <i class="fa-regular fa-copyright"></i>
+        Copyright 2023 Balloonfix. All rights reserved.
+      </div>
+    </footer>
+  </body>
+  <script type="module" src="./javascript/homepage.js"></script>
+  <script src="./javascript/utils.js"></script>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/82fa38c892.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0" />
+    <link href="./css/index-styles.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/balloonfix-logo.jpg"/>
+    <title>My Orders page | Balloonfix</title>
+  </head>
+  <body>
+    <div class="my-orders-page-title">
+      <div class="my-orders-page-title__number">02.</div>
+      <div class="my-orders-page-title__text-and-user-navigation-wrapper">
+        <div class="my-orders-page-title__user-navigation user-navigation">
+          <div class="user-navigation__image-wrapper">
+            <img class="user-navigation__image" src="<%= userData["user-image"] %>"  alt="user-image" referrerpolicy="no-referrer">
+          </div>
+          <div class="user-navigation__user-email">
+            <%= userData.email %>
+          </div>
+          <i class="fa-solid fa-caret-down user-navigation__down-arrow-icon"></i>
+          <div class="user-navigation__navigation-drop-down-wrapper invisible">
+            <a href="./" class="user-navigation__navigational-link">Home</a>
+            <a href="./my-orders-page" class="user-navigation__navigational-link">My Orders</a>
+          </div> 
+        </div>
+        <div class="my-orders-page-title__text">My Orders</div>
+      </div>
+    </div>
+    <div class="my-orders-container">
+      <div class="my-orders-container__order-cards-wrapper order-cards-wrapper">
+        <% userData.orders.forEach(order => { %>
+        <div class="order-cards-wrapper__card order-card order-card">
+          <div class="order-card__orderId" data-orderId="<%= order._id %>" style="visibility:hidden;"></div>
+          <div class="order-card__product-image-wrapper">
+            <img class="order-card__product-image" src="<%= order.productImage %>" alt="birthday-image"/>
+          </div>
+          <div class="order-card__row product-and-price-row">
+            <div class="order-card__product-name"><%= order.productName %></div>
+            <% if (order.discountedPrice) {%>
+              <div class="order-card__product-price">
+                <i class="fa-solid fa-indian-rupee-sign order-card__rupee-icon"></i>
+                <%= order.discountedPrice %>
+              </div>
+            <% } else { %>
+              <div class="order-card__product-price">
+                <i class="fa-solid fa-indian-rupee-sign order-card__rupee-icon"></i>
+                <%= order.productPrice %>
+              </div>
+            <% } %>
+          </div>
+          <div class="order-card__row type-and-date-row">
+            <div class="order-card__event-type">
+              <div class="order-card__event-type-label">
+                Event type
+              </div>
+              <div class="order-card__event-type-value">
+                <%= order.eventType %>
+              </div>
+            </div>
+            <div class="order-card__date-and-timing">
+              <div class="order-card__date-and-timing-label">
+                Date & Timing
+              </div>
+              <div class="order-card__date-and-timing-value">
+                <%= order["event-date"] %> at 
+                <%= order.time %>
+              </div>
+            </div>
+          </div>
+          <div class="order-card__row status-and-icon-row">
+            <div class="order-card__status"> 
+              <div class="order-card__status-label">
+                Status
+              </div>
+              <% if (order.orderStatus === "Confirmed") { %>
+              <div class="order-card__status-value" style="color: #26e366;">
+                <%= order.orderStatus %>
+              </div>
+              <% } else { %>
+              <div class="order-card__status-value">
+                <%= order.orderStatus %>
+              </div>
+              <% } %>
+            </div>
+            <div class="order-card__right-arrow-icon-wrapper">
+              Invoice
+              <i class="fa-solid fa-arrow-right right-arrow-icon"></i>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer__large-text">
+          BALLOONFIX
+      </div>
+      <div class="footer__get-in-touch-wrapper get-in-touch-wrapper">
+        <div class="get-in-touch-wrapper__title">
+          Connect with Us...
+        </div>
+        <div class="get-in-touch-wrapper__email-phone-info-wrapper email-phone-info-wrapper">
+          <div class="email-phone-info-wrapper__mobile-info">
+            <i class="email-phone-info-wrapper__mobile-icon fa-solid fa-phone"></i>
+            <div class="email-phone-info-wrapper__mobile-number">
+              1234567890
+            </div>
+          </div>
+          <div class="email-phone-info-wrapper__email-info">
+             <i class="email-phone-info-wrapper__email-icon fa-solid fa-envelope"></i>
+             <div class="email-phone-info-wrapper__email-id">
+              balloonfixin@gmail.com
+             </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__terms-and-conditions-wrapper">
+        <a class="footer__terms-and-conditions-link "href="./about-page#terms-and-conditions">
+          Terms & Conditions.
+        </a>
+      </div>
+      <div class="footer__copyright-text">
+        <i class="fa-regular fa-copyright"></i>
+        Copyright 2023 Balloonfix. All rights reserved.
+      </div>
+    </footer>
+    <script src="./javascript/utils.js"></script>
+   <script src="./javascript/my-orders-page.js"></script>
+  </body>
+</html>

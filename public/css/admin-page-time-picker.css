@@ -1,0 +1,16 @@
+.time-picker.time-picker {
+  position: absolute;
+  top: 20%;
+  left: unset;
+  right: 1rem;
+  width: 180px;
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  background-color: #42403c;
+  font-family: var(--quicksand-font);
+  font-weight: 600;
+  color: white;
+  z-index: 1;
+  transform: scale(0);
+  transition: transform 0.2s ease-out;
+}
