@@ -1,5 +1,5 @@
 import { signingInUser, signingOutUser } from "../javascript/firebase_google-signIn.js";
-import { getStorage, ref, uploadString, getDownloadURL, deleteObject } from "../javascript/firebase_cloud-storage.js";
+import { getStorage, ref, uploadString, getDownloadURL } from "../javascript/firebase_cloud-storage.js";
 
 let orderStateToggleWrapper = document.querySelector(".edit-orders-wrapper__order-state-toggle-wrapper");
 let orderStatePending = document.querySelector(".edit-orders-wrapper__order-state-pending");
