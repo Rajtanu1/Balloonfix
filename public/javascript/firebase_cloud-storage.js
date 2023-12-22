@@ -18,4 +18,4 @@ const app = initializeApp(firebaseConfig);
 const cloudStorage = getStorage(app);
 
 
-export { getStorage, ref, uploadString, getDownloadURL, deleteObject};
+export { getStorage, ref, uploadString, getDownloadURL};
